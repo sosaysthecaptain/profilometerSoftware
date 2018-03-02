@@ -1,0 +1,17 @@
+body {
+    background-color: black;
+}
+  
+img.resizeFull {
+  height: 780px;
+  visibility: hidden;
+  
+  /* Center horizontally */
+  display:block;
+  margin:auto;
+}
+
+p {
+  color: white;
+}
+  
