@@ -6,7 +6,7 @@ import { Command } from './models/Command';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [CommandsService]
+  providers: [CommandsService],
 })
 export class AppComponent implements OnInit {
   commands: any;
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     this.commandsService.getCommands().subscribe(commands => {
         this.commands = commands;
     });
-}
+  }
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
