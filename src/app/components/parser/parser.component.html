@@ -1,0 +1,10 @@
+<div id="whiteText" *ngIf="commands?.length > 0;else noCommands">
+  <ul  *ngFor="let command of commands" class="collection">
+    <li (dblclick)="deleteCommand($event, command)" class="collection-item"><strong>{{command.timeStamp}}</strong> xRel: {{command.xRel}}, yRel: {{command.yRel}}, zRel: {{command.zRel}}</li>
+  </ul>
+</div>
+
+<ng-template #noCommands>
+  <hr>
+    <h5>There are no commands to list</h5>
+</ng-template>

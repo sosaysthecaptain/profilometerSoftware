@@ -4,4 +4,6 @@ export interface Command {
     yRel?:number;
     zRel?:number;
     timeStamp:number;
+    read:boolean;
+    executed:boolean;
   }
