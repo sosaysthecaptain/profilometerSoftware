@@ -1,15 +1,22 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { CommandsService } from './services/commands.service';
+import { ParserService } from './services/parser.service';
 import { Command } from './models/Command';
 
+import { Subscription } from 'rxjs/Subscription';
+ 
+
+
+
 @Component({
-  selector: 'app-root',
+  selector: 'app-root', 
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [CommandsService],
+  providers: [CommandsService, ParserService],
 })
 export class AppComponent implements OnInit {
   commands: any;
+  latestCommand: any;
   title = 'app';
   imagePath = "../dist/assets/outputImages/calibrationGrid.svg";
   EXPOSURETIME = 1000;
@@ -17,7 +24,17 @@ export class AppComponent implements OnInit {
   CALIBRATIONIMAGE = "../dist/assets/outputImages/calibrationGrid.svg";
   calibrationGridActive = false;
 
-  constructor(public commandsService:CommandsService) {
+  //data: any;
+
+  message: any;
+  subscription: Subscription;
+
+  constructor(public commandsService:CommandsService, public parserService:ParserService) {
+    this.subscription = this.parserService.getMessage().subscribe(message => { 
+      this.message = message;
+      console.log('MESSAGE RECIEVED!!!! The message is: ');
+      console.log(message);
+    });
   }
 
   ngOnInit() {
@@ -26,6 +43,8 @@ export class AppComponent implements OnInit {
     this.commandsService.getCommands().subscribe(commands => {
         this.commands = commands;
     });
+
+
   }
 
   @HostListener('window:keyup', ['$event'])

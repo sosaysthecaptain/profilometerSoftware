@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Command } from '../models/Command';
 import { Observable } from 'rxjs/observable';
+import { ParserService } from './parser.service';
 
 var uniquesThisSession = [];
 
@@ -12,7 +13,10 @@ export class CommandsService {
   commandDoc: AngularFirestoreDocument<Command>
   // uniquesThisSession = [];
 
-  constructor(public afs: AngularFirestore) { 
+  constructor(
+    public afs: AngularFirestore,
+    public parserService: ParserService
+  ) { 
     //this.items = this.afs.collection('items').valueChanges();
     
     this.commandsCollection = this.afs.collection('items', ref => ref.orderBy('timeStamp', 'desc'));
@@ -82,6 +86,7 @@ export class CommandsService {
 
   handleNewCommand(command) {
     console.log('handleNewCommand firing. data.id: ' + command.id);
+    this.parserService.parse(command);
   }
 
 }

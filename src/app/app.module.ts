@@ -6,6 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AppComponent } from './app.component';
 import { CommandsService } from './services/commands.service';
+import { ParserService } from './services/parser.service';
 import { ParserComponent } from './components/parser/parser.component';
 
 export const firebaseConfig = {
@@ -28,7 +29,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule
   ],
-  providers: [AngularFireDatabase, CommandsService],
+  providers: [AngularFireDatabase, CommandsService, ParserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
