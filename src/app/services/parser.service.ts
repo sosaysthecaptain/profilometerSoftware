@@ -1,6 +1,7 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
+import { Command } from '../models/Command';
 
 
 
@@ -14,8 +15,8 @@ export class ParserService {
 
   private subject = new Subject<any>();
  
-  sendMessage(message: string) {
-      this.subject.next({ text: message });
+  sendMessage(data) {
+      this.subject.next(data);
   }
 
   clearMessage() {
@@ -29,8 +30,7 @@ export class ParserService {
 
 
   parse(data) {
-    console.log('Hello from ParserService! Calling sendMessage...');
-    this.sendMessage('This is a message being sent from ParserService');
+    this.sendMessage(data);
   }
 
 }

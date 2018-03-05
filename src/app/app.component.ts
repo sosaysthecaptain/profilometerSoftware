@@ -5,9 +5,6 @@ import { Command } from './models/Command';
 
 import { Subscription } from 'rxjs/Subscription';
  
-
-
-
 @Component({
   selector: 'app-root', 
   templateUrl: './app.component.html',
@@ -15,8 +12,7 @@ import { Subscription } from 'rxjs/Subscription';
   providers: [CommandsService, ParserService],
 })
 export class AppComponent implements OnInit {
-  commands: any;
-  latestCommand: any;
+
   title = 'app';
   imagePath = "../dist/assets/outputImages/calibrationGrid.svg";
   EXPOSURETIME = 1000;
@@ -24,27 +20,18 @@ export class AppComponent implements OnInit {
   CALIBRATIONIMAGE = "../dist/assets/outputImages/calibrationGrid.svg";
   calibrationGridActive = false;
 
-  //data: any;
-
-  message: any;
+  receivedCommand: any;
   subscription: Subscription;
 
   constructor(public commandsService:CommandsService, public parserService:ParserService) {
-    this.subscription = this.parserService.getMessage().subscribe(message => { 
-      this.message = message;
-      console.log('MESSAGE RECIEVED!!!! The message is: ');
-      console.log(message);
+    this.subscription = this.parserService.getMessage().subscribe(receivedCommand => { 
+      this.receivedCommand = receivedCommand;
+      //console.log('MESSAGE RECIEVED!!!! The message is: ');
+      console.log(receivedCommand);
     });
   }
 
   ngOnInit() {
-    this.commands = this.commandsService.getCommands();
-
-    this.commandsService.getCommands().subscribe(commands => {
-        this.commands = commands;
-    });
-
-
   }
 
   @HostListener('window:keyup', ['$event'])
