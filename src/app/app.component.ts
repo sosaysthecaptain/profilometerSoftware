@@ -28,10 +28,18 @@ export class AppComponent implements OnInit {
       this.receivedCommand = receivedCommand;
       //console.log('MESSAGE RECIEVED!!!! The message is: ');
       console.log(receivedCommand);
+      this.localParser(receivedCommand);
     });
   }
 
   ngOnInit() {
+  }
+
+  localParser(command) {
+    // right now, an xRel value over 0 will mean call toggleCalibrationGrid()
+    if (command.xRel > 0) {
+      this.toggleCalibrationGrid();
+    }
   }
 
   @HostListener('window:keyup', ['$event'])

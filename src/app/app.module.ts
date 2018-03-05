@@ -7,6 +7,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AppComponent } from './app.component';
 import { CommandsService } from './services/commands.service';
 import { ParserService } from './services/parser.service';
+
 import { ParserComponent } from './components/parser/parser.component';
 
 export const firebaseConfig = {
