@@ -85,7 +85,6 @@ export class CommandsService {
   }
 
   handleNewCommand(command) {
-    console.log('handleNewCommand firing. data.id: ' + command.id);
     this.parserService.parse(command);
   }
 

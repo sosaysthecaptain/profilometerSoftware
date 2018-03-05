@@ -9,6 +9,8 @@ import { CommandsService } from './services/commands.service';
 import { ParserService } from './services/parser.service';
 
 import { ParserComponent } from './components/parser/parser.component';
+import { GpioComponent } from './components/gpio/gpio.component';
+import { CameraComponent } from './components/camera/camera.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAfQYpSeeC27ZJuAHIRtBdbCN63Zvfr9SE",
@@ -23,7 +25,9 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    ParserComponent
+    ParserComponent,
+    GpioComponent,
+    CameraComponent
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,6 @@ import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { CommandsService } from './services/commands.service';
 import { ParserService } from './services/parser.service';
 import { Command } from './models/Command';
-
 import { Subscription } from 'rxjs/Subscription';
  
 @Component({
