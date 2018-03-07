@@ -7,10 +7,10 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AppComponent } from './app.component';
 import { CommandsService } from './services/commands.service';
 import { ParserService } from './services/parser.service';
+import { GpioService } from './services/gpio.service';
+import { CameraService } from './services/camera.service';
 
 import { ParserComponent } from './components/parser/parser.component';
-import { GpioComponent } from './components/gpio/gpio.component';
-import { CameraComponent } from './components/camera/camera.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAfQYpSeeC27ZJuAHIRtBdbCN63Zvfr9SE",
@@ -26,15 +26,14 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
     ParserComponent,
-    GpioComponent,
-    CameraComponent
+
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule
   ],
-  providers: [AngularFireDatabase, CommandsService, ParserService],
+  providers: [AngularFireDatabase, CommandsService, ParserService, GpioService, CameraService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,6 +3,9 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { Command } from '../models/Command';
 
+import { GpioService } from './gpio.service';
+import { CameraService } from './camera.service';
+
 
 
 @Injectable()
@@ -10,19 +13,14 @@ import { Command } from '../models/Command';
 export class ParserService {
 
 
-  constructor() { }
+  constructor(public gpioService: GpioService, public cameraService:CameraService) { }
 
   private subject = new Subject<any>();
-  public boringVariable;
-  
- 
   
   sendMessage(data) {
       console.log('sendMessage is firing. Everybody should be getting a message now.')
       this.subject.next(data);
 
-      // experimental
-      this.boringVariable = data;
   }
 
   clearMessage() {
@@ -30,15 +28,14 @@ export class ParserService {
   }
 
   getMessage(): Observable<any> {
-      console.log('ParserServce getMessage() firing');
       return this.subject.asObservable();
   }
 
   
-
-
   parse(data) {
-    this.sendMessage(data);
+    this.sendMessage(data);             // this is for app.component (graphics) alone
+    this.gpioService.gpioParser(data);
+    this.cameraService.cameraParser(data);
   }
 
 }
