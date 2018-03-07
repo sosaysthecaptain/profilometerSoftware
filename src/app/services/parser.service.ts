@@ -8,15 +8,21 @@ import { Command } from '../models/Command';
 @Injectable()
 
 export class ParserService {
-  // data: Observable<any[]>;
-  // latestCommand;
+
 
   constructor() { }
 
   private subject = new Subject<any>();
+  public boringVariable;
+  
  
+  
   sendMessage(data) {
+      console.log('sendMessage is firing. Everybody should be getting a message now.')
       this.subject.next(data);
+
+      // experimental
+      this.boringVariable = data;
   }
 
   clearMessage() {
@@ -24,8 +30,10 @@ export class ParserService {
   }
 
   getMessage(): Observable<any> {
+      console.log('ParserServce getMessage() firing');
       return this.subject.asObservable();
   }
+
   
 
 

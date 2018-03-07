@@ -11,6 +11,8 @@ export class CommandsService {
   commandsCollection: AngularFirestoreCollection<Command>;
   commands: Observable<Command[]>;
   commandDoc: AngularFirestoreDocument<Command>
+
+  latestCommand: Observable<Command>;
   // uniquesThisSession = [];
 
   constructor(
@@ -41,6 +43,11 @@ export class CommandsService {
 
   getCommands() {
     return this.commands;
+  }
+
+
+  getLatestCommand() {
+    return this.latestCommand;
   }
 
   addCommand(item: Command) {
@@ -86,6 +93,7 @@ export class CommandsService {
 
   handleNewCommand(command) {
     this.parserService.parse(command);
+    this.latestCommand = command;
   }
 
 }

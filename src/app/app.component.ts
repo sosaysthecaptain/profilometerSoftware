@@ -25,10 +25,12 @@ export class AppComponent implements OnInit {
   constructor(public commandsService:CommandsService, public parserService:ParserService) {
     this.subscription = this.parserService.getMessage().subscribe(receivedCommand => { 
       this.receivedCommand = receivedCommand;
-      //console.log('MESSAGE RECIEVED!!!! The message is: ');
+      console.log('Message received in app.component. The message is: ');
       console.log(receivedCommand);
       this.localParser(receivedCommand);
     });
+
+
   }
 
   ngOnInit() {
