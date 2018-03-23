@@ -9,8 +9,10 @@ import { CommandsService } from './services/commands.service';
 import { ParserService } from './services/parser.service';
 import { GpioService } from './services/gpio.service';
 import { CameraService } from './services/camera.service';
+import { UploadService } from './services/upload.service';
 
 import { ParserComponent } from './components/parser/parser.component';
+import { Command } from 'selenium-webdriver';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAfQYpSeeC27ZJuAHIRtBdbCN63Zvfr9SE",
@@ -33,7 +35,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule
   ],
-  providers: [AngularFireDatabase, CommandsService, ParserService, GpioService, CameraService],
+  providers: [AngularFireDatabase, CommandsService, ParserService, GpioService, CameraService, UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

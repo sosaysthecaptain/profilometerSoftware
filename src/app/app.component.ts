@@ -3,6 +3,8 @@ import { CommandsService } from './services/commands.service';
 import { ParserService } from './services/parser.service';
 import { Command } from './models/Command';
 import { Subscription } from 'rxjs/Subscription';
+
+import { CameraService } from './services/camera.service';
  
 @Component({
   selector: 'app-root', 
