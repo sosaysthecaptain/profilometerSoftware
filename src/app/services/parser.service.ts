@@ -18,7 +18,7 @@ export class ParserService {
   private subject = new Subject<any>();
   
   sendMessage(data) {
-      console.log('sendMessage is firing. Everybody should be getting a message now.')
+    //   console.log('sendMessage is firing. Everybody should be getting a message now.')
       this.subject.next(data);
 
   }

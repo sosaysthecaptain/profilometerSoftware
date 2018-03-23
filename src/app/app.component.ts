@@ -36,8 +36,9 @@ export class AppComponent implements OnInit {
 
   localParser(command) {
     // right now, an xRel value over 0 will mean call toggleCalibrationGrid()
-    if (command.xRel > 0) {
+    if (command.body == 'toggleCalibrationGrid') {
       this.toggleCalibrationGrid();
+      this.commandsService.markAsComplete(command);
     }
   }
 

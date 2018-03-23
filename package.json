@@ -27,7 +27,9 @@
     "angularfire2": "^5.0.0-rc.6",
     "core-js": "^2.4.1",
     "firebase": "^4.10.1",
+    "node-webcam": "^0.4.3",
     "rxjs": "^5.5.6",
+    "tinker-gpio": "0.0.8",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {

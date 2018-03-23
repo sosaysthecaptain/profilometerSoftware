@@ -61,14 +61,20 @@ export class CommandsService {
 
   markAsRead(command: Command) {
     this.commandDoc = this.afs.doc(`items/${command.id}`);
-    this.commandDoc.update({"read":true});
+    this.commandDoc.update({"status":'read'});
+  }
+
+  markAsComplete(command: Command) {
+    console.log('markAsComplete firing');
+    this.commandDoc = this.afs.doc(`items/${command.id}`);
+    this.commandDoc.update({"status":'complete'});
   }
 
   // parser functionality
 
   // checks if event is unique. If so, fires handleNewCommand
   checkUnique(data) {
-    if(data.read == true) {
+    if(data.status !== 'unread') {
       return
     } else {
       this.markAsRead(data);
