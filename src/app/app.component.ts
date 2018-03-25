@@ -41,7 +41,16 @@ export class AppComponent implements OnInit {
     if (command.body == 'toggleCalibrationGrid') {
       this.toggleCalibrationGrid();
       this.commandsService.markAsComplete(command);
+    } else if (command.body == 'componentImageTest') {
+      console.log('app component image test invoked');
+      this.imageTest();
     }
+  }
+
+  imageTest() {
+    console.log('imageTest function running');
+    let image = document.getElementById("displayImage");
+    console.log(typeof(image));
   }
 
   @HostListener('window:keyup', ['$event'])
@@ -80,6 +89,5 @@ export class AppComponent implements OnInit {
           this.imagePath = this.IMAGETOEXPOSE;
           this.calibrationGridActive = false;
         }
-      
       }  
 }

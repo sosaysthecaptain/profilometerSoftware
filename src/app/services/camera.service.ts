@@ -16,44 +16,54 @@ export class CameraService {
   snapshot: Observable<any>;
   downloadURL: Observable<string>;
 
-  constructor(public uploadService:UploadService,
-              private storage: AngularFireStorage,
-              private db: AngularFirestore) { }
+  constructor(public uploadService:UploadService) { }
 
-  uploadImage(file: File) {
-    // The storage path
-    const path = `test/${new Date().getTime()}_${file.name}`;
+  // constructor(public uploadService:UploadService,
+  //             private storage: AngularFireStorage,
+  //             private db: AngularFirestore) { }
 
-    // Totally optional metadata
-    const customMetadata = { metaString: 'Test metadata' };
+  // uploadImage(file: File) {
+  //   // The storage path
+  //   const path = `test/${new Date().getTime()}_${file.name}`;
 
-    // The main task
-    this.task = this.storage.upload(path, file, { customMetadata })
+  //   // Totally optional metadata
+  //   const customMetadata = { metaString: 'Test metadata' };
 
-    // Progress monitoring
-    this.percentage = this.task.percentageChanges();
-    this.snapshot   = this.task.snapshotChanges().pipe(
-      tap(snap => {
-        console.log(snap)
-        if (snap.bytesTransferred === snap.totalBytes) {
-          // Update firestore on completion
-          this.db.collection('photos').add( { path, size: snap.totalBytes })
-        }
-      })
-    )
-    // The file's download URL
-    this.downloadURL = this.task.downloadURL(); 
-  }
+  //   // The main task
+  //   this.task = this.storage.upload(path, file, { customMetadata })
+
+  //   // Progress monitoring
+  //   this.percentage = this.task.percentageChanges();
+  //   this.snapshot   = this.task.snapshotChanges().pipe(
+  //     tap(snap => {
+  //       console.log(snap)
+  //       if (snap.bytesTransferred === snap.totalBytes) {
+  //         // Update firestore on completion
+  //         this.db.collection('photos').add( { path, size: snap.totalBytes })
+  //       }
+  //     })
+  //   )
+  //   // The file's download URL
+  //   this.downloadURL = this.task.downloadURL(); 
+  // }
 
   cameraParser(data) {
     if(data.body == 'captureImage') {
       console.log('captureImage command received');
       this.uploadService.markAsComplete(data);
+    } else if (data.body == 'uploadTest') {
+      console.log('upload test invoked');
+      this.uploadTest();
     }
   }
 
   captureImage() {
     console.log('captureImage firing');
+  }
+
+  uploadTest() {
+    const testImagePath = '../../assets/capturedImages/forUpload/testImage.png';
+    //const testImage = new File(testImagePath, 'testImage');
   }
 
 }
